@@ -14,6 +14,13 @@
 
     <div class="site-header-wrapper">
         <header class="site-header">
+            <!-- кнопка-бургер для планшетов и телефонов -->
+            <button class="burger-btn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <div class="header-logo">
                 <a href="index.html">IT WEBSITE</a>
             </div>
@@ -45,17 +52,60 @@
         </header>
     </div>
 
+    <!-- всплывающее окно мобильного меню из макета -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-menu-close" aria-label="Закрыть меню">
+                <img src="img/ico/cross.svg" alt="Закрыть">
+            </button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-logo">
+                <a href="index.html">IT WEBSITE</a>
+            </div>
+
+            <nav class="mobile-menu-nav">
+                <ul class="mobile-nav-list">
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Media</a></li>
+                    <li><a href="#">Cases</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-contacts">
+                <div class="contact-item">
+                    <img src="img/ico/phone.svg" alt="Phone">
+                    <a href="tel:+71111111111">+7 (111) 111 11 11</a>
+                </div>
+                <div class="contact-item">
+                    <img src="img/ico/phone.svg" alt="Phone">
+                    <a href="tel:+71111111111">+7 (111) 111 11 11</a>
+                </div>
+                <div class="contact-item">
+                    <img src="img/ico/mail.svg" alt="Mail">
+                    <a href="mailto:itcompany@mail.com">itcompany@mail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main class="main-content">
+        <!-- 1-Й ЭКРАН: HERO -->
         <section class="hero-section">
             <div class="hero-container">
                 
                 <div class="hero-left">
-                    <h1 class="hero-title">
-                        Development of <span class="highlight">mobile applications</span> and <span class="highlight">web services</span> of any complexity
-                    </h1>
-                    <p class="hero-text">
-                        We create mobile applications for iOS, Android that transfer your business to mobile applications of your customers' devices.
-                    </p>
+                    <div class="hero-text-block">
+                        <h1 class="hero-title">
+                            Development of <span class="highlight">mobile applications</span> and <span class="highlight">web services</span> of any complexity
+                        </h1>
+                        <p class="hero-text">
+                            We create mobile applications for iOS, Android that transfer your business to mobile applications of your customers' devices.
+                        </p>
+                    </div>
 
                     <div class="callback-card">
                         <p class="form-title">Leave your contacts and we will call you back within 30 minutes</p>
@@ -94,6 +144,44 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- 2-Й ЭКРАН: FULL DEVELOPMENT CYCLE -->
+        <section class="dev-cycle-section">
+            <div class="dev-cycle-container">
+                <h2 class="dev-cycle-title">Full development cycle</h2>
+                <p class="dev-cycle-subtitle">We use proven technologies</p>
+
+                <div class="dev-cycle-grid">
+                    <div class="dev-tech-col">
+                        <div class="tech-card">
+                            <h3 class="tech-card-title">Web</h3>
+                            <p class="tech-card-text">
+                                PHP / JavaScript / Node.JS / Web Socket / Socket.io / Vue.js / Nuxt / MySQL / Laravel / GO lang / django / Python
+                            </p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h3 class="tech-card-title">Mobile</h3>
+                            <p class="tech-card-text">
+                                Swift / Kotlin / Alamofire / Firebase / CoreData / Room / Realm / Coroutine / RxJava / RxSwift / Unit Test / Navigation
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="dev-nav-col">
+                        <ul class="dev-nav-list">
+                            <li><a href="#" class="dev-nav-link">iOS development <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">Android development <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">Web development <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">UI/UX design <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">Testing <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">Launch <span class="arrow">›</span></a></li>
+                            <li><a href="#" class="dev-nav-link">IT consulting <span class="arrow">›</span></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -142,6 +230,31 @@
             </div>
         </footer>
     </div>
+
+    <!-- скрипт открытия и закрытия меню -->
+    <script>
+        const burgerBtn = document.querySelector('.burger-btn');
+        const closeBtn = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-list a');
+
+        burgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 
 </body>
 </html>
