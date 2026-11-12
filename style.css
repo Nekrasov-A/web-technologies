@@ -34,8 +34,13 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #111827;
     background-color: #ffffff;
     line-height: 1.5;
@@ -43,8 +48,6 @@ body {
     min-height: 100vh;
     /* прижимает футер вниз */
     grid-template-rows: auto 1fr auto;
-    /* прячет горизонтальную полосу прокрутки если что-то вдруг вылезет за край экрана */
-    overflow-x: hidden;
 }
 
 /* ссылки без подчеркивания */
@@ -75,13 +78,14 @@ img {
     margin-bottom: -88px;
     /* делает чтобы прозрачная обертка вокруг хедера не мешала кликать по элементам под ней */
     pointer-events: none;
+    width: 100%;
 }
 
 /* белая плашка хедера */
 .site-header {
     /* возвращает кликабельность самой плашке хедера */
     pointer-events: auto;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 72px;
     background-color: #ffffff;
@@ -92,6 +96,7 @@ img {
     justify-content: space-between;
     padding: 0 32px;
     position: relative;
+    width: 100%;
 }
 
 /* кнопка бургер из свгшки макета */
@@ -114,7 +119,7 @@ img {
 
 /* текст логотипа "IT website" */
 .header-logo a {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-weight: 800;
     color: #2563eb;
@@ -130,7 +135,7 @@ img {
 
 /* ссылки навигации */
 .header-nav .nav-list a {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: #374151;
@@ -149,11 +154,20 @@ img {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    white-space: nowrap;
+}
+
+/* синий цвет контактов в хедере как на макете */
+.header-contacts .contact-item a {
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: #1f2937;
-    white-space: nowrap;
+    color: #2563eb;
+    transition: color 0.2s;
+}
+
+.header-contacts .contact-item a:hover {
+    color: #1d4ed8;
 }
 
 /* рисует иконку рядом с телефоном или почтой */
@@ -169,11 +183,6 @@ img {
     width: 16px;
     height: 16px;
     filter: invert(34%) sepia(85%) saturate(2222%) hue-rotate(213deg) brightness(96%) contrast(96%);
-}
-
-/* синий цвет для номера или почты если навести мышку */
-.contact-item a:hover {
-    color: #2563eb;
 }
 
 /* всплывающее меню на весь экран для мобилок */
@@ -266,47 +275,59 @@ img {
 .main-content {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* первый экран хиро с темноватым фоном по макету */
+/* первый экран хиро с правильным сероватым фоном */
 .hero-section {
     position: relative;
     /* чтобы мокапы телефонов не ломали страницу */
     overflow: hidden;
     background-color: #f4f5f8;
+    height: 820px;
+    min-height: 820px;
+    width: 100%;
 }
 
-/* две колонки грида слева текст справа мокапы телефонов */
+/* две колонки грида: текст слева и мокапы справа */
 .hero-container {
-    max-width: 1280px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 20px;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+    grid-template-columns: 580px 1fr;
+    gap: 30px;
     align-items: center;
-    min-height: 720px;
+    height: 100%;
     position: relative;
 }
 
 /* текст в хиро */
 .hero-left {
     position: relative;
+    /* z-index чтобы текст и форма были выше мокапов если вдруг наползут */
     z-index: 10;
     max-width: 580px;
+    width: 100%;
     /* костыль отступ сверху чтобы заголовок не спрятался под хедером */
-    padding: 120px 0 60px;
+    padding-top: 50px;
 }
 
-/* Development of mobile... в хиро */
+.hero-text-block {
+    width: 100%;
+}
+
+/* Development of mobile... строго в 3 строки как в макете */
 .hero-title {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 46px;
+    font-family: 'Inter', sans-serif;
+    font-size: 39px;
     line-height: 1.2;
     font-weight: 800;
     color: #111827;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
 }
 
 /* синий цвет на словах mobile applications и web services */
@@ -316,56 +337,61 @@ img {
 
 /* We create mobile... в хиро */
 .hero-text {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: #6b7280;
-    margin-bottom: 40px;
+    max-width: 500px;
+    margin-bottom: 32px;
 }
 
 /* белая плашка с вводом телефона и имени */
 .callback-card {
     background: #ffffff;
     border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.07);
+    padding: 28px 32px 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    max-width: 560px;
+    width: 100%;
 }
 
 /* Leave your contacts... в хиро */
 .form-title {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 24px;
-    line-height: 1.4;
+    margin-bottom: 20px;
+    line-height: 1.35;
 }
 
-/* грид на три колонки телефон имя кнопка */
+/* грид на три колонки: поля делят место а кнопка строго внутри карточки */
 .callback-form {
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    gap: 20px;
+    gap: 16px;
     align-items: flex-end;
+    width: 100%;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 /* подпись над полем Phone number... Full name... */
 .form-group label {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 12px;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 500;
-    color: #9ca3af;
-    margin-bottom: 8px;
+    color: #8c93a0;
+    margin-bottom: 6px;
 }
 
 /* убрана рамка у полей в хиро оставлена полоса снизу */
 .form-group input {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     height: 38px;
     border: none;
     border-bottom: 1px solid #d1d5db;
@@ -392,6 +418,7 @@ img {
     gap: 8px;
     border-bottom: 1px solid #d1d5db;
     height: 38px;
+    width: 100%;
 }
 
 /* костыль чтобы полоска под флагом подсвечивалась */
@@ -408,13 +435,14 @@ img {
 /* размер эмодзи флага казахстана */
 .flag-icon {
     font-size: 16px;
+    flex-shrink: 0;
 }
 
-/* кнопка Get Consultation */
+/* кнопка Get consultation в одну строчку как в макете */
 .btn-primary {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    height: 46px;
-    padding: 0 24px;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+    height: 42px;
+    padding: 0 18px;
     background-color: #2563eb;
     color: #ffffff;
     font-size: 14px;
@@ -423,6 +451,9 @@ img {
     border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -431,7 +462,7 @@ img {
     background-color: #1d4ed8;
 }
 
-/* вдавливается когда кликаешь */
+/* слегка вдавливается когда кликаешь */
 .btn-primary:active {
     transform: scale(0.98);
 }
@@ -440,33 +471,38 @@ img {
 .hero-right {
     position: relative;
     height: 100%;
-    min-height: 520px;
+    width: 100%;
 }
 
-/* сетка всех 6 телефонов задвинута наверх и повернута на 12 градусов против часовой */
+/* точные размеры мокапов чтобы поместились все 6 штук и срезались ровно по низу */
 .hero-mockups {
     position: absolute;
-    left: 20px;
-    top: -460px;
+    right: -20px;
+    top: -470px;
     display: grid;
-    grid-template-columns: 280px 280px;
-    gap: 24px;
+    grid-template-columns: 245px 245px;
+    gap: 20px;
     transform: rotate(-12deg);
     /* чтобы нельзя было случайно выделить картинку и перетащить мышкой */
     pointer-events: none;
 }
 
-/* столбик из трех телефонов, оба ряда стоят ровно вровень без всяких лесенок */
+/* столбик из трех телефонов */
 .mockup-col {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
+}
+
+/* сдвиг правого столбика чтобы компенсировать наклон и срезать низ ровно по линии */
+.mockup-col-right {
+    transform: translateY(55px);
 }
 
 /* картинка каждого экрана со скруглениями под айфон и объемной тенью */
 .mockup-col img {
-    width: 280px;
-    border-radius: 28px;
+    width: 245px;
+    border-radius: 24px;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 
@@ -474,13 +510,15 @@ img {
 .dev-cycle-section {
     padding: 80px 0 100px;
     background-color: #ffffff;
+    width: 100%;
 }
 
 /* контейнер второго экрана */
 .dev-cycle-container {
-    max-width: 1280px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 20px;
 }
 
 /* заголовок второго экрана Full development cycle */
@@ -507,6 +545,7 @@ img {
     grid-template-columns: 1.25fr 0.75fr;
     gap: 60px;
     align-items: start;
+    width: 100%;
 }
 
 /* левая часть с карточками технологий */
@@ -514,6 +553,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    min-width: 0;
 }
 
 /* плашка Web или Mobile */
@@ -532,40 +572,44 @@ img {
     line-height: 1.7;
     color: #6b7280;
     max-width: 620px;
+    word-break: break-word;
 }
 
-/* список ссылок iOS development, Android... со стрелочками справа */
+/* список ссылок iOS development, Android... */
 .dev-nav-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 22px;
 }
 
-/* каждая строка ссылки со стрелкой */
+/* ссылка со стрелкой сразу после слов без растягивания на всю ширину */
 .dev-nav-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
+    width: fit-content;
+    max-width: 100%;
     font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     color: #111827;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f2f5;
-    transition: color 0.2s, padding-left 0.2s;
+    padding: 2px 0;
+    transition: color 0.2s;
 }
 
-/* синяя стрелочка справа */
+/* синяя стрелочка сразу после слов */
 .dev-nav-link .arrow {
-    font-size: 20px;
+    font-size: 18px;
     color: #2563eb;
     transition: transform 0.2s;
 }
 
-/* сдвиг и синий цвет при наведении на пункт */
+/* подчеркивание и смещение стрелочки при наведении как на макете */
 .dev-nav-link:hover {
-    color: #2563eb;
-    padding-left: 6px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #2563eb;
+    text-underline-offset: 6px;
 }
 
 .dev-nav-link:hover .arrow {
@@ -578,11 +622,13 @@ img {
     z-index: 20;
     padding: 20px 24px 30px;
     background-color: #ffffff;
+    width: 100%;
 }
 
 /* темная плашка футера со скругленными углами */
 .site-footer {
-    max-width: 1280px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     background-color: #111625;
     border-radius: 16px;
@@ -592,7 +638,7 @@ img {
 
 /* логотип IT WEBSITE по центру футера */
 .footer-logo {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     font-size: 24px;
     font-weight: 800;
@@ -608,6 +654,7 @@ img {
     gap: 24px;
     padding-bottom: 36px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
 }
 
 /* иконка контакта слева текст справа */
@@ -615,6 +662,8 @@ img {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    min-width: 0;
+    word-break: break-word;
 }
 
 /* размер иконки в футере */
@@ -622,12 +671,13 @@ img {
     width: 20px;
     height: 20px;
     margin-top: 2px;
+    flex-shrink: 0;
 }
 
 /* серая мелкая подпись сверху над контактом */
 .footer-contact-item .label {
     display: block;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 11px;
     color: #9ca3af;
     margin-bottom: 4px;
@@ -636,7 +686,7 @@ img {
 /* сам телефон или почта белым жирным текстом */
 .footer-contact-item .value,
 .footer-contact-item .value a {
-    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: #ffffff;
@@ -654,18 +704,20 @@ img {
     justify-content: center;
     gap: 8px;
     padding-top: 24px;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 13px;
     color: #9ca3af;
+    text-align: center;
 }
 
 /* размер иконки глобуса */
 .footer-bottom img {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
-/* брейкпоинт 1024px */
+/* брейкпоинт 1024px: планшет горизонтально */
 @media (max-width: 1024px) {
     /* уменьшаем отступ сверху у хедера */
     .site-header-wrapper {
@@ -693,18 +745,24 @@ img {
         display: none;
     }
 
+    .hero-section {
+        height: auto;
+        min-height: 720px;
+    }
+
     .hero-container {
+        grid-template-columns: 1fr 1fr;
         padding: 0 20px;
-        gap: 24px;
+        gap: 20px;
     }
 
     .hero-left {
         padding: 100px 0 40px;
     }
 
-    /* заголовок хиро чуть компактнее */
+    /* заголовок хиро чуть компактнее чтобы не толкал мокапы */
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
     }
 
     /* на планшете поля формы встают друг под друга а кнопка на всю ширину */
@@ -718,11 +776,11 @@ img {
         margin-top: 6px;
     }
 
-    /* чуть уменьшаем мокапы чтобы влезли в планшет */
+    /* уменьшаем масштаб мокапов чтобы они не наползали на текст на ширине около 1000px */
     .hero-mockups {
-        transform: rotate(-12deg) scale(0.72);
-        left: -40px;
-        top: -430px;
+        transform: rotate(-12deg) scale(0.68);
+        right: -30px;
+        top: -440px;
     }
 
     /* второй экран на планшете всё ещё в 2 колонки */
@@ -742,8 +800,94 @@ img {
     }
 }
 
-/* брейкпоинт 768px */
+/* брейкпоинт 768px: вертикальный планшет и крупные смартфоны */
 @media (max-width: 768px) {
+    /* отключаем жесткие переносы строк заголовка на мобилках чтобы текст не распирал экран */
+    .desktop-br {
+        display: none;
+    }
+
+    /* перестраиваем контейнер хиро строго в одну вертикальную колонку */
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 16px;
+        gap: 0;
+        min-height: auto;
+    }
+
+    /* убирает обертку hero-left чтобы её дочерние блоки можно было двигать через order */
+    .hero-left {
+        display: contents;
+    }
+
+    /* 1: текст идет первым сверху */
+    .hero-text-block {
+        order: 1;
+        padding: 80px 0 16px;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-text {
+        margin-bottom: 0;
+        max-width: 100%;
+    }
+
+    /* 2: блок мокапов аккуратно изолирован и центрируется между текстом и формой */
+    .hero-right {
+        order: 2;
+        min-height: 340px;
+        height: 340px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        margin: 10px 0 20px;
+    }
+
+    /* мокапы жестко отцентрированы внутри своего блока и не лезут на соседний текст */
+    .hero-mockups {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-12deg);
+        grid-template-columns: 140px 140px;
+        gap: 14px;
+        margin: 0;
+        right: auto;
+        width: auto;
+    }
+
+    .mockup-col {
+        gap: 14px;
+    }
+
+    .mockup-col-right {
+        transform: translateY(30px);
+    }
+
+    .mockup-col img {
+        width: 140px;
+        border-radius: 14px;
+    }
+
+    /* 3: карточка формы идет третьей в самом низу */
+    .callback-card {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 18px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
     /* второй экран складывается в одну колонку чтобы текст не слипался */
     .dev-cycle-grid {
         grid-template-columns: 1fr;
@@ -755,87 +899,77 @@ img {
     }
 }
 
-/* брейкпоинт 425px */
+/* брейкпоинт 425px и меньше (вплоть до старых айфонов на 320px) */
 @media (max-width: 425px) {
     /* отступ под мобильный хедер */
     .site-header-wrapper {
-        padding: 10px 14px 0;
-        margin-bottom: -70px;
+        padding: 10px 12px 0;
+        margin-bottom: -66px;
     }
 
     .site-header {
-        height: 60px;
-        padding: 0 16px;
+        height: 56px;
+        padding: 0 14px;
     }
 
-    /* прячем почту */
+    /* прячем почту из хедера на мобилке, остаётся только бургер и лого */
     .header-contacts {
         display: none;
     }
 
     .header-logo a {
-        font-size: 18px;
+        font-size: 17px;
     }
 
-    /* перестраиваем контейнер хиро вертикально */
     .hero-container {
-        display: flex;
-        flex-direction: column;
-        padding: 0 16px;
-        gap: 0;
-    }
-
-    .hero-left {
-        display: contents;
+        padding: 0 14px;
     }
 
     .hero-text-block {
-        order: 1;
-        padding: 80px 0 16px;
-        max-width: 100%;
+        padding: 76px 0 14px;
     }
 
     /* заголовок хиро под экраны телефонов */
     .hero-title {
         font-size: 24px;
         line-height: 1.25;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
 
     .hero-text {
         font-size: 14px;
-        margin-bottom: 0;
     }
 
-    /* мокапы ставит вторыми чтобы были по центру между текстом и формой */
+    /* уменьшаем высоту витрины мокапов под компактные экраны смартфонов */
     .hero-right {
-        order: 2;
-        min-height: 380px;
-        height: 380px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        margin: 10px 0 20px;
+        min-height: 290px;
+        height: 290px;
+        margin: 8px 0 16px;
     }
 
+    /* размер колонок по 125px — идеально влезает даже в 320px айфоны */
     .hero-mockups {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: rotate(-12deg) scale(0.55);
-        margin: 0 auto;
+        grid-template-columns: 125px 125px;
+        gap: 10px;
     }
 
-    /* карточку с формой ставит третьей в самый низ */
-    .callback-card {
-        order: 3;
-        width: 100%;
-        padding: 22px 18px;
+    .mockup-col {
+        gap: 10px;
+    }
+
+    .mockup-col-right {
+        transform: translateY(25px);
+    }
+
+    .mockup-col img {
+        width: 125px;
         border-radius: 12px;
-        margin-bottom: 30px;
+    }
+
+    .callback-card {
+        padding: 20px 16px;
+        border-radius: 12px;
+        margin-bottom: 24px;
     }
 
     .form-title {
@@ -845,11 +979,11 @@ img {
 
     /* второй экран на мобилках */
     .dev-cycle-section {
-        padding: 50px 0 60px;
+        padding: 44px 0 50px;
     }
 
     .dev-cycle-container {
-        padding: 0 16px;
+        padding: 0 14px;
     }
 
     .dev-cycle-title {
@@ -858,40 +992,44 @@ img {
 
     .dev-cycle-subtitle {
         font-size: 14px;
-        margin-bottom: 32px;
+        margin-bottom: 28px;
     }
 
     .dev-tech-col {
-        gap: 28px;
+        gap: 24px;
     }
 
     .tech-card-text {
         font-size: 13px;
     }
 
-    .dev-nav-link {
-        font-size: 15px;
+    .dev-nav-list {
+        gap: 18px;
     }
 
-    /* футер в один столбик */
+    .dev-nav-link {
+        font-size: 16px;
+    }
+
+    /* футер в один столбик без пустоты справа */
     .footer-wrapper {
-        padding: 12px 12px 20px;
+        padding: 10px 12px 18px;
     }
 
     .site-footer {
-        padding: 28px 20px 24px;
+        padding: 26px 16px 20px;
         border-radius: 12px;
     }
 
     .footer-logo {
         font-size: 20px;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
     }
 
     .footer-contacts-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-        padding-bottom: 24px;
+        gap: 18px;
+        padding-bottom: 20px;
     }
 
     .footer-bottom {
