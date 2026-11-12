@@ -35,14 +35,13 @@
 }
 
 body {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #111827;
-    background-color: #f4f5f6;
+    background-color: #f4f5f8;
     line-height: 1.5;
-    display: grid;
     min-height: 100vh;
-    /* прижимает футер вниз */
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
     /* прячет горизонтальную полосу прокрутки если что-то вдруг вылезет за край экрана */
     overflow-x: hidden;
 }
@@ -81,7 +80,7 @@ img {
 .site-header {
     /* возвращает кликабельность самой плашке хедера */
     pointer-events: auto;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 72px;
     background-color: #ffffff;
@@ -95,7 +94,7 @@ img {
 
 /* текст логотипа "IT website" */
 .header-logo a {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-weight: 800;
     color: #2563eb;
@@ -110,7 +109,7 @@ img {
 
 /* ссылки навигации */
 .header-nav .nav-list a {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: #374151;
@@ -128,10 +127,20 @@ img {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    white-space: nowrap;
+}
+
+/* синий цвет контактов в хедере как на макете */
+.header-contacts .contact-item a {
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: #1f2937;
+    color: #2563eb;
+    transition: color 0.2s;
+}
+
+.header-contacts .contact-item a:hover {
+    color: #1d4ed8;
 }
 
 /* рисует иконку рядом с телефоном или почтой */
@@ -149,57 +158,56 @@ img {
     filter: invert(34%) sepia(85%) saturate(2222%) hue-rotate(213deg) brightness(96%) contrast(96%);
 }
 
-/* синий цвет для номер или почти если навести мышку */
-.contact-item a:hover {
-    color: #2563eb;
-}
-
 /* основной контент между хедером и футером */
 .main-content {
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
 }
 
-/* первый экран */
+/* первый экран хиро с правильным сероватым фоном и фиксированной высотой по макету */
 .hero-section {
-    flex: 1;
     position: relative;
     /* чтобы мокапы телефонов не ломали страницу */
     overflow: hidden;
-    background: transparent;
+    background-color: #f4f5f8;
+    height: 820px;
+    min-height: 820px;
 }
 
-/* две колонки грида слева текст справа мокапы телефонов */
+/* две колонки грида: расширенная колонка под 3 строки заголовка и колонка под мокапы */
 .hero-container {
-    max-width: 1280px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 20px;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+    grid-template-columns: 620px 1fr;
+    gap: 30px;
     align-items: center;
-    min-height: 720px;
+    height: 100%;
     position: relative;
 }
 
 /* текст в хиро */
 .hero-left {
     position: relative;
+    /* z-index чтобы текст и форма были выше мокапов если вдруг наползут */
     z-index: 10;
-    max-width: 580px;
+    max-width: 620px;
     /* костыль отступ сверху чтобы заголовок не спрятался под хедером */
-    padding: 120px 0 60px;
+    padding-top: 50px;
 }
 
-/* Development of mobile... в хиро */
+/* Development of mobile... строго в 3 строки как в макете */
 .hero-title {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 46px;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
     line-height: 1.2;
     font-weight: 800;
     color: #111827;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
 }
 
 /* синий цвет на словах mobile applications и web services */
@@ -209,36 +217,39 @@ img {
 
 /* We create mobile... в хиро */
 .hero-text {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: #6b7280;
-    margin-bottom: 40px;
+    max-width: 520px;
+    margin-bottom: 32px;
 }
 
 /* белая плашка с вводом телефона и имени */
 .callback-card {
     background: #ffffff;
     border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.07);
+    padding: 28px 32px 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    max-width: 580px;
+    width: 100%;
 }
 
 /* Leave your contacts... в хиро */
 .form-title {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 24px;
-    line-height: 1.4;
+    margin-bottom: 20px;
+    line-height: 1.35;
 }
 
-/* грид на три колонки телефон имя кнопка */
+/* грид на три колонки: поля делят свободное место поровну а кнопка не вылетает за край */
 .callback-form {
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    gap: 20px;
+    gap: 16px;
     align-items: flex-end;
 }
 
@@ -249,16 +260,16 @@ img {
 
 /* подпись над полем Phone number... Full name... */
 .form-group label {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 12px;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 500;
-    color: #9ca3af;
-    margin-bottom: 8px;
+    color: #8c93a0;
+    margin-bottom: 6px;
 }
 
 /* убрана рамка у полей в хиро оставлена полоса снизу */
 .form-group input {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     height: 38px;
     border: none;
     border-bottom: 1px solid #d1d5db;
@@ -303,11 +314,11 @@ img {
     font-size: 16px;
 }
 
-/* кнопка Get Consultation */
+/* кнопка Get consultation в одну строчку как в макете */
 .btn-primary {
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    height: 46px;
-    padding: 0 24px;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+    height: 42px;
+    padding: 0 18px;
     background-color: #2563eb;
     color: #ffffff;
     font-size: 14px;
@@ -316,6 +327,9 @@ img {
     border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -335,14 +349,14 @@ img {
     height: 100%;
 }
 
-/* сетка всех 6 телефонов задвинута наверх и повернута на 12 градусов против часовой */
+/* точные размеры мокапов чтобы поместились все 6 штук и срезались ровно по низу */
 .hero-mockups {
     position: absolute;
-    left: 20px;
-    top: -460px;
+    right: -30px;
+    top: -470px;
     display: grid;
-    grid-template-columns: 280px 280px;
-    gap: 24px;
+    grid-template-columns: 245px 245px;
+    gap: 20px;
     transform: rotate(-12deg);
     /* чтобы нельзя было случайно выделить картинку и перетащить мышкой */
     pointer-events: none;
@@ -352,42 +366,42 @@ img {
 .mockup-col {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
 }
 
-/* левый столбик телефонов без смещения */
-.mockup-col-left {
-    transform: translateY(0);
+/* сдвиг правого столбика чтобы компенсировать наклон и срезать низ ровно по линии */
+.mockup-col-right {
+    transform: translateY(55px);
 }
 
 /* картинка каждого экрана со скруглениями под айфон и объемной тенью */
 .mockup-col img {
-    width: 280px;
-    border-radius: 28px;
+    width: 245px;
+    border-radius: 24px;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 
-/* обертка подвала с отступами по краям */
+/* обертка подвала плотно прижата к низу хиро без пустоты */
 .footer-wrapper {
     position: relative;
     z-index: 20;
-    padding: 20px 24px 30px;
-    background-color: #fcfcfd;
+    padding: 0 24px 30px;
+    background-color: #f4f5f8;
 }
 
 /* темная плашка футера со скругленными углами */
 .site-footer {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     background-color: #111625;
     border-radius: 16px;
-    padding: 44px 56px 32px;
+    padding: 40px 48px 30px;
     color: #ffffff;
 }
 
 /* логотип IT WEBSITE по центру футера */
 .footer-logo {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     font-size: 24px;
     font-weight: 800;
@@ -422,7 +436,7 @@ img {
 /* серая мелкая подпись сверху над контактом */
 .footer-contact-item .label {
     display: block;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 11px;
     color: #9ca3af;
     margin-bottom: 4px;
@@ -431,7 +445,7 @@ img {
 /* сам телефон или почта белым жирным текстом */
 .footer-contact-item .value,
 .footer-contact-item .value a {
-    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: #ffffff;
@@ -449,7 +463,7 @@ img {
     justify-content: center;
     gap: 8px;
     padding-top: 24px;
-    font-family: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
     font-size: 13px;
     color: #9ca3af;
 }
