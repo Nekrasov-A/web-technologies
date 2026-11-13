@@ -271,6 +271,15 @@ img {
     font-size: 14px;
 }
 
+.mobile-menu-contacts .contact-item a {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.mobile-menu-contacts .contact-item a:hover {
+    color: #1d4ed8;
+}
+
 /* основной контент между хедером и футером */
 .main-content {
     display: flex;
@@ -290,14 +299,14 @@ img {
     width: 100%;
 }
 
-/* две колонки грида: текст слева и мокапы справа */
+/* две колонки грида текст слева и мокапы справа */
 .hero-container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 580px 1fr;
+    grid-template-columns: 620px 1fr;
     gap: 30px;
     align-items: center;
     height: 100%;
@@ -309,7 +318,7 @@ img {
     position: relative;
     /* z-index чтобы текст и форма были выше мокапов если вдруг наползут */
     z-index: 10;
-    max-width: 580px;
+    max-width: 620px;
     width: 100%;
     /* костыль отступ сверху чтобы заголовок не спрятался под хедером */
     padding-top: 50px;
@@ -322,7 +331,7 @@ img {
 /* Development of mobile... строго в 3 строки как в макете */
 .hero-title {
     font-family: 'Inter', sans-serif;
-    font-size: 39px;
+    font-size: 40px;
     line-height: 1.2;
     font-weight: 800;
     color: #111827;
@@ -341,7 +350,7 @@ img {
     font-size: 16px;
     line-height: 1.6;
     color: #6b7280;
-    max-width: 500px;
+    max-width: 520px;
     margin-bottom: 32px;
 }
 
@@ -351,7 +360,7 @@ img {
     border-radius: 16px;
     padding: 28px 32px 32px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-    max-width: 560px;
+    max-width: 580px;
     width: 100%;
 }
 
@@ -477,7 +486,7 @@ img {
 /* точные размеры мокапов чтобы поместились все 6 штук и срезались ровно по низу */
 .hero-mockups {
     position: absolute;
-    right: -20px;
+    right: -30px;
     top: -470px;
     display: grid;
     grid-template-columns: 245px 245px;
@@ -717,7 +726,7 @@ img {
     flex-shrink: 0;
 }
 
-/* брейкпоинт 1024px: планшет горизонтально */
+/* брейкпоинт 1024px */
 @media (max-width: 1024px) {
     /* уменьшаем отступ сверху у хедера */
     .site-header-wrapper {
@@ -760,9 +769,9 @@ img {
         padding: 100px 0 40px;
     }
 
-    /* заголовок хиро чуть компактнее чтобы не толкал мокапы */
+    /* заголовок хиро чуть компактнее */
     .hero-title {
-        font-size: 32px;
+        font-size: 34px;
     }
 
     /* на планшете поля формы встают друг под друга а кнопка на всю ширину */
@@ -776,11 +785,11 @@ img {
         margin-top: 6px;
     }
 
-    /* уменьшаем масштаб мокапов чтобы они не наползали на текст на ширине около 1000px */
+    /* чуть уменьшаем мокапы чтобы влезли в планшет */
     .hero-mockups {
-        transform: rotate(-12deg) scale(0.68);
+        transform: rotate(-12deg) scale(0.72);
         right: -30px;
-        top: -440px;
+        top: -430px;
     }
 
     /* второй экран на планшете всё ещё в 2 колонки */
@@ -800,14 +809,14 @@ img {
     }
 }
 
-/* брейкпоинт 768px: вертикальный планшет и крупные смартфоны */
+/* брейкпоинт 768px: сдвигаем порог мобилки сюда, чтобы на промежуточных экранах ничего не наезжало */
 @media (max-width: 768px) {
     /* отключаем жесткие переносы строк заголовка на мобилках чтобы текст не распирал экран */
     .desktop-br {
         display: none;
     }
 
-    /* перестраиваем контейнер хиро строго в одну вертикальную колонку */
+    /* перестраиваем контейнер хиро в вертикальный стек */
     .hero-container {
         display: flex;
         flex-direction: column;
@@ -821,7 +830,7 @@ img {
         display: contents;
     }
 
-    /* 1: текст идет первым сверху */
+    /* на мобилке через order ставим текст первым */
     .hero-text-block {
         order: 1;
         padding: 80px 0 16px;
@@ -829,20 +838,25 @@ img {
         text-align: left;
     }
 
+    /* заголовок хиро под экраны телефонов */
     .hero-title {
-        font-size: 28px;
+        font-size: 26px;
+        line-height: 1.25;
+        margin-bottom: 14px;
+        word-break: break-word;
     }
 
     .hero-text {
+        font-size: 15px;
         margin-bottom: 0;
         max-width: 100%;
     }
 
-    /* 2: блок мокапов аккуратно изолирован и центрируется между текстом и формой */
+    /* мокапы ставим вторыми чтобы были по центру между текстом и формой */
     .hero-right {
         order: 2;
-        min-height: 340px;
-        height: 340px;
+        min-height: 380px;
+        height: 380px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -852,21 +866,20 @@ img {
         margin: 10px 0 20px;
     }
 
-    /* мокапы жестко отцентрированы внутри своего блока и не лезут на соседний текст */
     .hero-mockups {
-        position: absolute;
+        position: relative;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) rotate(-12deg);
         grid-template-columns: 140px 140px;
-        gap: 14px;
+        gap: 12px;
         margin: 0;
         right: auto;
         width: auto;
     }
 
     .mockup-col {
-        gap: 14px;
+        gap: 12px;
     }
 
     .mockup-col-right {
@@ -878,7 +891,7 @@ img {
         border-radius: 14px;
     }
 
-    /* 3: карточка формы идет третьей в самом низу */
+    /* карточку с формой ставим третьей в самый низ */
     .callback-card {
         order: 3;
         width: 100%;
@@ -886,6 +899,11 @@ img {
         padding: 22px 18px;
         border-radius: 12px;
         margin-bottom: 30px;
+    }
+
+    .form-title {
+        font-size: 15px;
+        margin-bottom: 16px;
     }
 
     /* второй экран складывается в одну колонку чтобы текст не слипался */
@@ -899,7 +917,7 @@ img {
     }
 }
 
-/* брейкпоинт 425px и меньше (вплоть до старых айфонов на 320px) */
+/* брейкпоинт 425px */
 @media (max-width: 425px) {
     /* отступ под мобильный хедер */
     .site-header-wrapper {
@@ -918,22 +936,12 @@ img {
     }
 
     .header-logo a {
-        font-size: 17px;
-    }
-
-    .hero-container {
-        padding: 0 14px;
-    }
-
-    .hero-text-block {
-        padding: 76px 0 14px;
+        font-size: 18px;
     }
 
     /* заголовок хиро под экраны телефонов */
     .hero-title {
         font-size: 24px;
-        line-height: 1.25;
-        margin-bottom: 14px;
     }
 
     .hero-text {
@@ -942,12 +950,16 @@ img {
 
     /* уменьшаем высоту витрины мокапов под компактные экраны смартфонов */
     .hero-right {
-        min-height: 290px;
-        height: 290px;
+        min-height: 320px;
+        height: 320px;
         margin: 8px 0 16px;
     }
 
-    /* размер колонок по 125px — идеально влезает даже в 320px айфоны */
+    /* фиксит адаптацию */
+    /* когда было transform: scale(0.55) мокапы в какой-то момент становились
+    больше экрана и не могли поместиться физически так что 
+    начинали растягивать страницу горизонтальным скроллом
+    ломая в том числе футер тот самый вот */
     .hero-mockups {
         grid-template-columns: 125px 125px;
         gap: 10px;
@@ -1011,7 +1023,7 @@ img {
         font-size: 16px;
     }
 
-    /* футер в один столбик без пустоты справа */
+    /* футер в один столбик */
     .footer-wrapper {
         padding: 10px 12px 18px;
     }
